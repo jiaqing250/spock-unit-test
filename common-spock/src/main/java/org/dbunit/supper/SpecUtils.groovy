@@ -41,7 +41,7 @@ class SpecUtils {
         //获取数据库连接池对象
         def source = new DataSource()
         source.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        source.setUrl("jdbc:mysql://localhost:3306/rlb?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true");
+        source.setUrl("jdbc:mysql://localhost:3306/student?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true");
         source.setUsername("root");
         source.setPassword("123456");
         dataSource = source

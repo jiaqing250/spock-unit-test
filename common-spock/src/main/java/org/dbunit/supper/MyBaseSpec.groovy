@@ -15,7 +15,7 @@ import spock.lang.Specification
 @PowerMockIgnore(["javax.management.*", "javax.net.ssl.*"])
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(Sputnik.class)
-//@SuppressStaticInitializationFor(["cn.rlb.common.util.RedisUtils"]) // 忽略静态初始化
+//@SuppressStaticInitializationFor(["cn.student.common.util.RedisUtils"]) // 忽略静态初始化
 /**
  * @author 2022-12-19 zfz
  */
