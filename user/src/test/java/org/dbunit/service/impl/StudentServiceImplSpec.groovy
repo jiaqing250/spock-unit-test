@@ -5,10 +5,12 @@ import org.dbunit.dto.StudentDTO
 import org.dbunit.supper.MapperUtil
 import org.dbunit.supper.MyBaseSpec
 import org.dbunit.utils.UserUtils
-import org.mockito.MockedStatic
-import org.mockito.Mockito
+import org.powermock.api.mockito.PowerMockito
+import org.powermock.core.classloader.annotations.PrepareForTest
 import spock.lang.Unroll
 
+@PrepareForTest([UserUtils.class])
+//mock静态方法需要填写对应的类
 class StudentServiceImplSpec extends MyBaseSpec {
 
 
@@ -64,9 +66,11 @@ class StudentServiceImplSpec extends MyBaseSpec {
 
     @Unroll
     def "单元测试: all --没有异常"() {
+
         when:
-        MockedStatic<UserUtils> m = Mockito.mockStatic(UserUtils.class);
-        m.when(UserUtils.&getUserName).thenReturn("张三");
+        //mock静态方法
+        PowerMockito.mockStatic(UserUtils.class)
+        PowerMockito.when(UserUtils.getUserName()).thenReturn("admin");
         studentServiceImpl.all()
 
         then:
