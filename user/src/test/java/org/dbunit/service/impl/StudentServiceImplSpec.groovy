@@ -4,8 +4,10 @@ import org.dbunit.dao.StudentMapper
 import org.dbunit.dto.StudentDTO
 import org.dbunit.supper.MapperUtil
 import org.dbunit.supper.MyBaseSpec
+import org.dbunit.utils.UserUtils
+import org.mockito.MockedStatic
+import org.mockito.Mockito
 import spock.lang.Unroll
-
 
 class StudentServiceImplSpec extends MyBaseSpec {
 
@@ -49,4 +51,27 @@ class StudentServiceImplSpec extends MyBaseSpec {
         // todo check return value
     }
     ///endregion
+
+    @Unroll
+    def "单元测试: all --会有异常"() {
+        when:
+        studentServiceImpl.all()
+
+        then:
+        thrown(RuntimeException.class)
+
+    }
+
+    @Unroll
+    def "单元测试: all --没有异常"() {
+        when:
+        MockedStatic<UserUtils> m = Mockito.mockStatic(UserUtils.class);
+        m.when(UserUtils.&getUserName).thenReturn("张三");
+        studentServiceImpl.all()
+
+        then:
+        notThrown(RuntimeException.class)
+
+    }
+
 }

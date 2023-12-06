@@ -6,8 +6,10 @@ import org.dbunit.dao.StudentMapper;
 import org.dbunit.dto.StudentDTO;
 import org.dbunit.entity.Student;
 import org.dbunit.service.StudentService;
+import org.dbunit.utils.UserUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,6 +36,13 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
             throw new RuntimeException("性别只能为男或女");
         }
         this.updateById(BeanUtil.copyProperties(dto, Student.class));
+    }
+
+    @Override
+    public List<Student> all() {
+        return this.lambdaQuery()
+                .eq(Student::getName, UserUtils.getUserName())
+                .list();
     }
 }
 

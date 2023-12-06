@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.dbunit.dto.StudentDTO;
 import org.dbunit.entity.Student;
 
+import java.util.List;
+
 /**
  * (Student)表服务接口
  *
@@ -13,6 +15,8 @@ import org.dbunit.entity.Student;
 public interface StudentService extends IService<Student> {
 
     void save(StudentDTO dto);
+
+    List<Student> all();
 
 }
 
